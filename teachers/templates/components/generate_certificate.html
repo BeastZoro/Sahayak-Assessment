@@ -1,0 +1,24 @@
+<section>
+  <h1>Generate Certificate</h1>
+
+  <form method="post" action="{% url 'generate_certificate' %}">
+    {% csrf_token %}
+
+    <div>
+      <label for="student">Student:</label>
+      {{ form.student }}
+    </div>
+
+    <div>
+      <label for="teacher">Teacher:</label>
+      {{ form.teacher }}
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" rows="4"></textarea>
+    </div>
+
+    <input type="submit" value="Generate Certificate" />
+  </form>
+</section>

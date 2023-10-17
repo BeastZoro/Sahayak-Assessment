@@ -1,0 +1,44 @@
+<section>
+  <h1>Teacher List</h1>
+
+  <ul>
+    {% for teacher in teachers %}
+    <li>
+      <a href="#" class="teacher-link" data-teacher-id="{{ teacher.id }}"
+        >{{ teacher.name }}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div>
+    <h2>Students</h2>
+    <ul id="std-list">
+      <!-- Teachers will be loaded here dynamically -->
+    </ul>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const studentList = document.getElementById("std-list");
+      const studentLinks = document.querySelectorAll(".teacher-link");
+
+      studentLinks.forEach((studentLink) => {
+        studentLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          const teachId = this.getAttribute("data-teacher-id");
+
+          // Make an AJAX request to fetch the associated teachers
+          fetch(`/get_associated_students/${teachId}/`)
+            .then((response) => response.json())
+            .then((data) => {
+                studentList.innerHTML = ""; // Clear the student list
+              data.students.forEach((student) => {
+                studentList.innerHTML += `<li>${student.name}</li>`;
+              });
+            });
+        });
+      });
+    });
+  </script>
+</section>

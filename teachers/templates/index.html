@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% include 'components/navbar.html' %}
+
+    <h1>Teacher and Student List</h1>
+    <main style="min-height: 50vh; display: flex; justify-content: space-around;">
+        {% include 'components/students.html' %}
+        {% include 'components/teachers.html' %}
+      </main>
+  </body>
+</html>
